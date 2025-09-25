@@ -116,6 +116,8 @@ class MetaDataset(Dataset):
         self.data = []
         # create individual Dataset objects
         for item in tqdm(data_to_load, ncols=40):
+            print(type(item))
+            print(item)
             split = item["split"]
             if splits_to_load is not None and split not in splits_to_load:
                 continue

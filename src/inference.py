@@ -90,7 +90,7 @@ def main():
         key_to_metrics[key]["true"].append(true[i])
         key_to_metrics[key]["pred"].append(pred[i])
     key_to_metrics = dict(key_to_metrics)
-    save_pickle(args.results_file, key_to_metrics)
+    np.save(args.results_file, key_to_metrics)
     printt("All done. Exiting.")
 
 

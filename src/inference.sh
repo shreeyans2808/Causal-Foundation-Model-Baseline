@@ -7,9 +7,9 @@ CUDA=0
 
 # NOTE: name of YAML file and run save folder
 # see ./config for more options
-TAG="aggregator_tf_fci"
+#TAG="aggregator_tf_fci"
 TAG="aggregator_tf_gies"
-#TAG="baseline"  # baseline never requires training
+TAG="baseline"  
 CONFIG="config/${TAG}.yaml"
 
 PATH_GIES="checkpoints/gies_synthetic/model_best_epoch=535_auprc=0.849.ckpt"
@@ -24,5 +24,5 @@ python src/inference.py \
     --config_file $CONFIG \
     --run_name $TAG \
     --gpu $CUDA \
-    --checkpoint_path $PATH_GIES
+    --checkpoint_path $PATH_FCI
 
