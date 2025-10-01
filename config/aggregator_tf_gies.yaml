@@ -1,18 +1,27 @@
 ---
  # file is parsed by inner-most keys only
  data:
+<<<<<<< HEAD
      data_file: "data/data_test.csv"
      debug: False
+=======
+     data_file: "/Users/shreeyansarora/Downloads/SEA/sea-reproduce/src/data/hepar2.csv"
+     debug: True
+>>>>>>> 3e011a2 (Shreeyans changes)
      batch_size: 1  # 1 for inference, 16 for train
-     fci_vars: 5
-     fci_batches: 10
-     fci_batches_inference: 500
-     fci_batch_size: 500
+     fci_vars: 3
+     fci_batches: 5
+     fci_batches_inference: 5
+     fci_batch_size: 20
      envs_per_batch: 5
-     num_workers: 10
+     num_workers: 0
      accumulate_batches: 1
      log_frequency: 10
+<<<<<<< HEAD
      results_file: "results_data.npy"
+=======
+     results_file: "predictions_hepar2.npy"
+>>>>>>> 3e011a2 (Shreeyans changes)
  model:
      algorithm: "gies"
      model: "aggregator"

@@ -11,10 +11,13 @@ import numpy as np
 import torch
 import pytorch_lightning as pl
 
+import argparse
+torch.serialization.add_safe_globals([argparse.Namespace])
 from args import parse_args
 from data import InferenceDataModule, BaselineDataModule
 from model import load_model
 from utils import printt, get_suffix, save_pickle
+
 
 
 # TODO why not?

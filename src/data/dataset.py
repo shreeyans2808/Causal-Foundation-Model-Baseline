@@ -33,7 +33,13 @@ class InterventionalDataset(Dataset):
     def __init__(self, fp_data, fp_graph, fp_regime, algorithm):
         super().__init__()
         # read raw data
-        self.key = fp_graph.split("/")[-2]
+        # Handles both Unix and Windows paths
+        path_parts = fp_graph.replace("\\", "/").split("/")
+        if len(path_parts) >= 2:
+            self.key = path_parts[-2]
+        else:
+            self.key = os.path.splitext(os.path.basename(fp_graph))[0]
+
         self.data = np.load(fp_data)
         self.graph = torch.from_numpy(np.load(fp_graph)).long()
         self.num_vars = self.data.shape[1]
@@ -84,7 +90,13 @@ class ObservationalDataset(Dataset):
     def __init__(self, fp_data, fp_graph, algorithm):
         super().__init__()
         # read raw data
-        self.key = fp_graph.split("/")[-2]
+        path_parts = fp_graph.replace("\\", "/").split("/")
+        if len(path_parts) >= 2:
+            self.key = path_parts[-2]
+        else:
+            # Fallback for simple filenames
+            self.key = os.path.splitext(os.path.basename(fp_graph))[0]
+
         self.data = np.load(fp_data)
         self.graph = torch.from_numpy(np.load(fp_graph)).long()
         self.num_vars = self.data.shape[1]
@@ -116,9 +128,13 @@ class MetaDataset(Dataset):
         self.data = []
         # create individual Dataset objects
         for item in tqdm(data_to_load, ncols=40):
+<<<<<<< HEAD
             print(type(item))
             print(item)
             split = item["split"]
+=======
+            split = item.get("split", "test")
+>>>>>>> 3e011a2 (Shreeyans changes)
             if splits_to_load is not None and split not in splits_to_load:
                 continue
             self.splits[split].append(len(self.data))

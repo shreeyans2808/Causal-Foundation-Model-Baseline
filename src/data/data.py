@@ -92,7 +92,7 @@ class InferenceDataModule(pl.LightningDataModule):
         self.seed = args.seed
         # for proper timing, set batch_size to 1
         self.batch_size = 1
-        self.num_workers = args.num_workers
+        self.num_workers = 0
         self.data_file = args.data_file
 
         BaseDataset = get_base_dataset(args.algorithm)
